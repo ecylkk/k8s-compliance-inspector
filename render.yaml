@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: k8s-compliance-demo
+    env: docker
+    plan: free
+    region: singapore
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: 8080

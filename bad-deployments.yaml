@@ -1,0 +1,87 @@
+# Deliberately badly configured deployments for the inspector to find
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bad-frontend
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bad-frontend
+  template:
+    metadata:
+      labels:
+        app: bad-frontend
+    spec:
+      containers:
+        - name: nginx
+          # ❌ BAD: Using latest tag
+          image: nginx:latest
+          # ❌ BAD: No resources limits/requests specified
+          # ❌ BAD: No liveness/readiness probes specified
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bad-backend
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bad-backend
+  template:
+    metadata:
+      labels:
+        app: bad-backend
+    spec:
+      containers:
+        - name: api
+          # ❌ BAD: Using no tag (defaults to latest)
+          image: python
+          # ❌ BAD: No resource limits
+          # ❌ BAD: No probes
+          command: ["python", "-m", "http.server", "8080"]
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: good-service
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: good-service
+  template:
+    metadata:
+      labels:
+        app: good-service
+    spec:
+      containers:
+        - name: app
+          # ✅ GOOD: Exact version tag
+          image: alpine:3.18
+          command: ["sleep", "3600"]
+          # ✅ GOOD: Resource limits defined
+          resources:
+            requests:
+              cpu: "10m"
+              memory: "32Mi"
+            limits:
+              cpu: "50m"
+              memory: "64Mi"
+          # ✅ GOOD: Liveness probe defined
+          livenessProbe:
+            exec:
+              command:
+              - cat
+              - /etc/os-release
+            initialDelaySeconds: 5
+            periodSeconds: 5

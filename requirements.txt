@@ -1,0 +1,5 @@
+kubernetes
+jinja2
+Flask
+PyYAML
+jinja2==3.1.3

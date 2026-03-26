@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>K8s Inspector Live Demo</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f0f2f5; margin: 40px; }
+        .stat-box { display: inline-block; padding: 20px; border-radius: 8px; color: white; width: 200px; margin-right: 15px; }
+        .critical { background: #e11d48; } .warning { background: #f59e0b; } .passed { background: #10b981; }
+        .card { background: white; padding: 20px; border-radius: 8px; margin-top: 20px; border-left: 5px solid #ccc; }
+        .card.has-critical { border-left-color: #e11d48; }
+        .issue { background: #fff1f2; padding: 10px; border-radius: 4px; border-left: 3px solid #e11d48; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>K8s Compliance Live Dashboard (Demo)</h1>
+    <p>Last Analysis: 2026-03-26 10:16:08</p>
+    <div>
+        <div class="stat-box critical"><h2>2</h2>  CRITICAL</div>
+        <div class="stat-box warning"><h2>4</h2> WARNINGS</div>
+    </div>
+    
+    <div class="card has-critical">
+        <h3>[default] bad-frontend</h3>
+        
+            <div class="issue"><strong>WARNING:</strong> Container 'nginx' uses 'latest': nginx:latest</div>
+        
+            <div class="issue"><strong>CRITICAL:</strong> Container 'nginx' is missing resource limits/requests.</div>
+        
+            <div class="issue"><strong>WARNING:</strong> Container 'nginx' is missing a livenessProbe.</div>
+        
+    </div>
+    
+    <div class="card has-critical">
+        <h3>[default] bad-backend</h3>
+        
+            <div class="issue"><strong>WARNING:</strong> Container 'api' uses 'latest': python</div>
+        
+            <div class="issue"><strong>CRITICAL:</strong> Container 'api' is missing resource limits/requests.</div>
+        
+            <div class="issue"><strong>WARNING:</strong> Container 'api' is missing a livenessProbe.</div>
+        
+    </div>
+    
+    <div class="card ">
+        <h3>[default] good-service</h3>
+        
+    </div>
+    
+</body>
+</html>
