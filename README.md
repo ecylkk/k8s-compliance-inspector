@@ -1,10 +1,12 @@
-# Kube-Compliance-Inspector
+# 🛡️ K8s-Compliance-Inspector
 
-![Python](https://img.shields.io/badge/python-3.11+-blue.svg)
-![Kubernetes API](https://img.shields.io/badge/k8s--api-integrated-blue)
-![Compliance](https://img.shields.io/badge/compliance-automated-green)
+![Python](https://img.shields.io/badge/Python-3.11+-blue?style=for-the-badge&logo=python&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-Compatible-blue?style=for-the-badge&logo=kubernetes&logoColor=white)
+![Status](https://img.shields.io/badge/Demo-Live_on_Render-success.svg?style=for-the-badge&logo=render&logoColor=white)
 
-A lightweight, agentless configuration compliance engine for Kubernetes. Written purely in Python using the official `kubernetes` client library, it queries the cluster state directly and generates clean HTML reports detailing configuration risks.
+> **🚀 [LIVE DEMO: View Real-time K8s Compliance Report](https://k8s-compliance-demo.onrender.com/)**
+
+**Kube-Compliance-Inspector** is a lightweight, agentless configuration compliance engine for Kubernetes. Written purely in Python using the official `kubernetes` client library, it queries the cluster state directly and generates clean HTML reports detailing configuration risks.
 
 **Preventing production outages starts with enforcing strict configuration baselines.**
 
